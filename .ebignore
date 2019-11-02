@@ -1,0 +1,15 @@
+.idea
+.idea/
+.vscode
+.vscode/
+.circleci/
+.circleci
+.src
+tests
+tests/*
+.eslintignore
+.eslintrc.js
+.gitignore
+tsconfig.json
+webpack.config.js
+yarn.log

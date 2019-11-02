@@ -9,8 +9,8 @@
     "deploy": "eb deploy --profile weehan",
     "build": "webpack --config webpack.config.js",
     "lint": "eslint \"./src/**/*.*\"",
-    "start:eb": "npm build && npm start",
-    "start": "ls -al && node ./dist/app",
+    "start": "pm2 start ./dist/app.js --name app",
+    "terminate": "pm2 kill",
     "test": "mocha ./test/*"
   },
   "devDependencies": {
@@ -25,6 +25,7 @@
     "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
+    "pm2": "^4.1.2",
     "rimraf": "^3.0.0",
     "ts-node": "^8.4.1",
     "typescript": "^3.6.4",
