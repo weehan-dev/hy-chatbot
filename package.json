@@ -9,7 +9,7 @@
     "deploy": "eb deploy --profile weehan",
     "build": "webpack --config webpack.config.js",
     "lint": "eslint \"./src/**/*.*\"",
-    "start": "node ./dist/app",
+    "start": "ls -al && node ./dist/app",
     "test": "mocha ./test/*"
   },
   "devDependencies": {
