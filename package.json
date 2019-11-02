@@ -5,9 +5,8 @@
   "license": "GPLv3",
   "scripts": {
     "dev": "nodemon --exec ts-node ./src/app.js",
-    "predeploy": "aws s3 rm s3://hy-chatbot-source --recursive --profile weehan",
     "prebuild": "rimraf dist",
-    "deploy": "zip src.zip ./* && aws s3 cp src.zip s3://hy-chatbot-source --profile weehan && rimraf src.zip",
+    "deploy": "eb deploy --profile weehan",
     "build": "webpack --config webpack.config.js",
     "lint": "eslint \"./src/**/*.*\"",
     "start": "node ./dist/app",
