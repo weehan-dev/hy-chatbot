@@ -2,9 +2,13 @@
   "name": "kakao-chatbot",
   "version": "1.0.0",
   "author": "changhoi",
+  "license": "GPLv3",
   "scripts": {
     "dev": "nodemon --exec ts-node ./src/app.js",
-    "build": "tsc -b",
+    "predeploy": "aws s3 rm s3://hy-chatbot-source --recursive --profile weehan",
+    "prebuild": "rimraf dist",
+    "deploy": "zip src.zip ./* && aws s3 cp src.zip s3://hy-chatbot-source --profile weehan && rimraf src.zip",
+    "build": "webpack --config webpack.config.js",
     "lint": "eslint \"./src/**/*.*\"",
     "start": "node ./dist/app",
     "test": "mocha ./test/*"
@@ -15,13 +19,18 @@
     "@types/sequelize": "^4.28.6",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
+    "dotenv-webpack": "^1.7.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
+    "rimraf": "^3.0.0",
     "ts-node": "^8.4.1",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
     "dotenv": "^8.2.0",

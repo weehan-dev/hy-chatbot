@@ -6,3 +6,5 @@ node_modules/
 .vscode/
 .idea
 .idea/
+
+webpack.config.js
