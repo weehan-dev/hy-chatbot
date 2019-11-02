@@ -6,5 +6,5 @@ export default (app) => {
   app.set('port', configs.PORT);
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  app.use('', api);
+  app.use('/api', api);
 };
