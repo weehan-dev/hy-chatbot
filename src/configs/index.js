@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
+  ENV: process.env.NODE_ENV,
   PORT: process.env.PORT,
   HOST: process.env.HOST,
   DB: {
@@ -10,6 +11,6 @@ export default {
     HOST: process.env.DB_HOST,
     TYPE: process.env.DB_TYPE,
     PASSWORD: process.env.DB_PASSWORD,
-    USERNAME: process.env.DB_USERNAME,
-  },
+    USERNAME: process.env.DB_USERNAME
+  }
 };
