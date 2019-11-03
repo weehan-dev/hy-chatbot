@@ -9,8 +9,9 @@
     "deploy": "eb deploy --profile weehan",
     "build": "webpack --config webpack.config.js",
     "lint": "eslint \"./src/**/*.*\"",
-    "start": "pm2 start ./dist/app.js --name app",
-    "terminate": "pm2 kill",
+    "start": "./node_modules/pm2/bin/pm2-runtime app.js",
+    "poststart": "node ./node_modules/pm2/bin/pm2 logs",
+    "start:local": "node ./dist/app",
     "test": "mocha ./test/*"
   },
   "devDependencies": {
