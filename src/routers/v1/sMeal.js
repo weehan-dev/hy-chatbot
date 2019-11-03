@@ -1,6 +1,6 @@
 import express from 'express';
-import serGetSMealResponse from '../../services/serGetSMealResponse';
-import serMakeSMealResponse from '../../services/serMakeResponse';
+import serGetSMealResponse from '../../services/serGetSMeal';
+import serMakeSMealResponse from '../../services/serMakeSMeal';
 
 const router = express.Router();
 
