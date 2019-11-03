@@ -1,6 +1,6 @@
-function makeResponse(data) {
+function makeResponse(data ,version) {
     let res = {
-        "version": "2.0",
+        "version": version,
     }
     
     let new_obj = {data : data}

@@ -5,10 +5,10 @@ import serMakeSMealResponse from '../../services/serMakeResponse';
 const router = express.Router();
 
 router.get('/get', (req, res) => {
-  serGetSMealResponse(req.query.time).then(function (text) {
+  serGetSMealResponse(req.query.time, req.query.version).then(function (text) {
     // 성공시
-    let returnToSkill = serMakeSMealResponse(text);
-    
+    let returnToSkill = serMakeSMealResponse(text[0], text[1]);
+
     res.json(returnToSkill);
   }, function (error) {
     // 실패시 
