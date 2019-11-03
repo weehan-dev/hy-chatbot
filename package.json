@@ -9,7 +9,7 @@
     "deploy": "eb deploy --profile weehan",
     "build": "webpack --config webpack.config.js",
     "lint": "eslint \"./src/**/*.*\"",
-    "start": "./node_modules/pm2/bin/pm2-runtime app.js",
+    "start": "./node_modules/pm2/bin/pm2-runtime ./dist/app.js",
     "poststart": "node ./node_modules/pm2/bin/pm2 logs",
     "start:local": "NODE_ENV=DEV node ./dist/app",
     "test": "NODE_ENV=DEV mocha ./test/*"
