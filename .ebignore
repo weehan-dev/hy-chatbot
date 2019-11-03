@@ -13,3 +13,4 @@ tests/*
 tsconfig.json
 webpack.config.js
 yarn.log
+.env
