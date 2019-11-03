@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=DEV nodemon --exec ts-node ./src/app.js",
     "prebuild": "rimraf dist",
+    "predeploy": "yarn build",
     "deploy": "eb deploy --profile weehan",
     "build": "webpack --config webpack.config.js",
     "lint": "eslint \"./src/**/*.*\"",
