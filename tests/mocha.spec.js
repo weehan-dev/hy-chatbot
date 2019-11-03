@@ -1,5 +1,4 @@
-describe('mocha test', function () {
-  console.log(this);
+describe('mocha test', () => {
   it('mocha should be working', (done) => {
     done();
   });
