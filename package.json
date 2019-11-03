@@ -13,7 +13,7 @@
     "start": "./node_modules/pm2/bin/pm2-runtime ./dist/app.js",
     "poststart": "node ./node_modules/pm2/bin/pm2 logs",
     "start:local": "node ./dist/app",
-    "test": "NODE_ENV=DEV mocha ./test/*"
+    "test": "NODE_ENV=DEV mocha ./tests/*"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
