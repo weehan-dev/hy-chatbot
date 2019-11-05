@@ -2,7 +2,7 @@
   "name": "kakao-chatbot",
   "version": "1.0.0",
   "author": "changhoi",
-  "license": "GPLv3",
+  "license": "GPL",
   "scripts": {
     "dev": "NODE_ENV=DEV nodemon --exec ts-node ./src/app.js",
     "prebuild": "rimraf dist",
@@ -13,7 +13,7 @@
     "start": "./node_modules/pm2/bin/pm2-runtime ./dist/app.js",
     "poststart": "node ./node_modules/pm2/bin/pm2 logs",
     "start:local": "node ./dist/app",
-    "test": "NODE_ENV=DEV mocha ./tests/*"
+    "test": "NODE_ENV=DEV mocha -r ts-node/register/transpile-only ./tests/*"
   },
   "devDependencies": {
     "@types/chai": "^4.2.4",
