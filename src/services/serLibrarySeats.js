@@ -17,7 +17,7 @@ function seatTextBuilder(libseat){
             if (item.isActive === true) {
                 text += `${item.name} \n [ ${item.available} / ${item.activeTotal} ]\n 잔여좌석: ${item.available} \n\n`;
             }
-
+ 
         }
     
 
