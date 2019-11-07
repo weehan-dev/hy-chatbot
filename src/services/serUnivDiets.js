@@ -1,10 +1,11 @@
 import axios from 'axios';
+import configs from "../configs/index";
 
 const fetchDietData = async (time, version) => {
-    let url = 'http://app.ucan.or.kr/api/diet/hanyang/' + `${time}`
     
-    const sMeal = await axios.get(url);
-    return {'data': sMeal.data, 'version': version};
+    const diet = await axios.get(configs.URL.DIET + `${time}`);
+    console.log(111, diet);
+    return {'data': diet.data, 'version': version};
     
 };
 

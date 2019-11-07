@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('', async (req, res) => {
 	try {
 		const result = await fetchSeatData(req.query.version);
-		const ret = seatDataBuilder(result['libseat'], result['version']);
+		const ret = seatDataBuilder(result['libseat'].data, result['version']);
 		res.json(ret);
 	} catch (e) {
 		res.send(e)

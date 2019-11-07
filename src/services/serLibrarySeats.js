@@ -1,27 +1,27 @@
 import axios from 'axios';
-
+import configs from '../configs/index'
+import { PassThrough } from 'stream';
 const fetchSeatData = async (version) => {
-  let url = 'https://lib.hanyang.ac.kr/smufu-api/pc/1/rooms-at-seat';
   
-  const libSeat = await axios.get(url);
+  const libSeat = await axios.get(configs.URL.LIBRARY);
   return {'libseat':libSeat, 'version':version};
 };
 
 
-function seatDataBuilder(data, version) {
+function seatDataBuilder(libSeat, version) {
     // name location diet.name diet.price
     let res = {
         "version": version,
+        "data":{}
     }
-    
-    for(let i=0; i<data.data.data.totalCount; i++)
-    {   
-        res[`w${i}`] = data.data.data.list[i]
-        
+    if (libSeat.success == true) {
+        for (let i = 0; i < libSeat.data.totalCount; i++) {
+            res["data"][`w${i}`] = libSeat.data.list[i]
+        }
+    }else {
+        PassThrough
     }
-    console.log(res);
 
-    
     
     return res
 }
