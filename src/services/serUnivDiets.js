@@ -8,6 +8,7 @@ const fetchDietData = async (time) => {
     try{
         diet = await axios.get(configs.URL.DIET + `${time}`);
     } catch(e){
+        // 오전 2시 즘 학식 API 접속시 오류
         diet.data = "정보를 불러오는데 실패했습니다."
     }
     
@@ -18,7 +19,7 @@ const fetchDietData = async (time) => {
 function dietTextBuilder(data){
 
     let text = data;
-
+    
 
     return text
 }

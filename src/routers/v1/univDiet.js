@@ -10,7 +10,7 @@ router.get('', async (req, res) => {
 		const text = dietTextBuilder(result)
 		
 		const ret = dietDataBuilder(text, req.query.version);
-
+ 
 		res.json(ret);
 	} catch (e) {
 		res.send(e)
