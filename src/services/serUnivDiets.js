@@ -1,25 +1,46 @@
 import axios from 'axios';
 import configs from "../configs/index";
+import { PassThrough } from 'stream';
+import { text } from 'body-parser';
 
-const fetchDietData = async (time, version) => {
+const fetchDietData = async (time) => {
+    let diet = {};
+    try{
+        diet = await axios.get(configs.URL.DIET + `${time}`);
+    } catch(e){
+        diet.data = "정보를 불러오는데 실패했습니다."
+    }
     
-    const diet = await axios.get(configs.URL.DIET + `${time}`);
-    console.log(111, diet);
-    return {'data': diet.data, 'version': version};
+    return diet.data;
     
 };
 
-function dietDataBuilder(data ,version) {
+function dietTextBuilder(data){
+
+    let text = data;
+
+
+    return text
+}
+
+function dietDataBuilder(text ,version) {
     let res = {
         "version": version,
+        "template": {
+            "outputs": [
+                {
+                    "simpleText": {
+                        "text": text
+                    }
+                }
+            ]
+        }
     }
-    
-    let new_obj = {data : data}
-    Object.assign(res, new_obj);
-    
+
+
     // name location diet.name diet.price
     
     return res
 }
 
-export {fetchDietData, dietDataBuilder};
+export {fetchDietData, dietTextBuilder, dietDataBuilder};

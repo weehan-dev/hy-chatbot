@@ -1,29 +1,51 @@
 import axios from 'axios';
 import configs from '../configs/index'
 import { PassThrough } from 'stream';
-const fetchSeatData = async (version) => {
+import { text } from 'body-parser';
+const fetchSeatData = async () => {
   
   const libSeat = await axios.get(configs.URL.LIBRARY);
-  return {'libseat':libSeat, 'version':version};
+
+  return libSeat.data;
 };
 
+function seatTextBuilder(libseat){
+    let text = "";
 
-function seatDataBuilder(libSeat, version) {
+    if (libseat.success === true) {
+        for (var i = 0, item; item = libseat.data.list[i]; i++) {
+            if (item.isActive === true) {
+                text += `${item.name} \n [ ${item.available} / ${item.activeTotal} ]\n 잔여좌석: ${item.available} \n\n`;
+            }
+
+        }
+    
+
+    }else{
+
+    }
+
+    return text;
+}
+
+
+function seatDataBuilder(text, version) {
     // name location diet.name diet.price
     let res = {
         "version": version,
-        "data":{}
-    }
-    if (libSeat.success == true) {
-        for (let i = 0; i < libSeat.data.totalCount; i++) {
-            res["data"][`w${i}`] = libSeat.data.list[i]
+        "template": {
+            "outputs": [
+                {
+                    "simpleText": {
+                        "text": text
+                    }
+                }
+            ]
         }
-    }else {
-        PassThrough
     }
 
-    
+
     return res
 }
 
-export {fetchSeatData, seatDataBuilder};
+export {fetchSeatData, seatTextBuilder, seatDataBuilder};
