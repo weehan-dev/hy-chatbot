@@ -14,5 +14,6 @@ router.get('/health', (req, res) => {
   res.json({ message: 'server is on' });
 });
 
+
 router.use('/api', api);
 export default router;
