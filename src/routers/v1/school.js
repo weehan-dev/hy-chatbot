@@ -1,12 +1,11 @@
 import express from 'express';
-import getWeather from '../../services/serProvideWeather';
+import Weather from '../../services/serProvideWeather';
 
 const router = express.Router();
 
 
-router.post('/weather', (req, res) => {
-    console.log(req);
-    res.json(getWeather());
+router.post('/weather', async (req, res) => {
+    res.json(await Weather());
   });
 
 export default router;
