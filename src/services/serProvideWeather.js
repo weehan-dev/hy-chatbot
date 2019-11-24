@@ -2,6 +2,7 @@
 // 사용자가 날씨를 요구하면 기상청 api -> 데이터 가공 -> 라우터로 json 전달
 import axios from 'axios';
 
+
 //기상청 api에 넣을 날짜 파라미터 반환 함수
 function handleDate() {
     let today = new Date();
@@ -20,6 +21,7 @@ function handleDate() {
     return date;
 }
 
+
 //기상청 api에 넣을 시간 파라미터 반환 함수
 function handleTime() {
     let today = new Date();
@@ -34,11 +36,12 @@ function handleTime() {
     return hours;
 }
 
+
 function spaceDate() {
     let today = new Date();
 
     if(today.getHours()<3){
-        today.setDate(today.getDate()-1)
+        today.setDate(today.getDate()-1);
     }
 
     let year = today.getFullYear();
@@ -48,6 +51,7 @@ function spaceDate() {
     let date = `${year}${month}${day}`;
     return date;
 }
+
 
 function spaceTime() {
     let today = new Date();
@@ -60,13 +64,6 @@ function spaceTime() {
     return hours;   
 }
 
-// function popDate(){
-//     return "20191123";
-// }
-
-// function popTime() {
-//     return "2300";
-// }
 
 //날짜와 시간을 받아 기상청api로 기상 정보 받아오는 부분
 async function getWeather() {
@@ -81,25 +78,17 @@ async function getWeather() {
     let spacetime = spaceTime();
     console.log("spacetime",spacetime);
 
-    // let popdate=popDate();
-    // console.log("popdate",popdate);
-    // let poptime=popTime();
-    // console.log("poptime",poptime);
-
-
     //초단기 실황
     let url1 = `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastGrib?ServiceKey=${servicekey}&base_date=${basedate}&base_time=${basetime}&nx=61&ny=127&pageNo=1&numOfRows=10&_type=json`;
     //초단기 예보
     let url2 = `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastTimeData?ServiceKey=${servicekey}&base_date=${basedate}&base_time=${basetime}&nx=61&ny=127&pageNo=1&numOfRows=25&_type=json`;
     //동네 예보
     let url3=`http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${servicekey}&base_date=${spacedate}&base_time=${spacetime}&nx=61&ny=127&pageNo=1&numOfRows=175&_type=json`;
-    // let url4=`http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${servicekey}&base_date=${popdate}&base_time=${poptime}&nx=61&ny=127&pageNo=1&numOfRows=170&_type=json`
 
     let liveWeather = {};
     let forecastWeather = {};
     let spaceWeather = {};
     let rows=0;
-    // let popWeather={};
 
     await axios.get(url1).then(response => {
         liveWeather = response.data.response.body.items.item;
@@ -114,19 +103,15 @@ async function getWeather() {
         rows=response.data.response.body.totalCount;
     });
 
-    // await axios.get(url4).then(response => {
-    //     popWeather = response.data.response.body.items.item;
-    // });
-
     let weatherData = {
         liveWeather: liveWeather,
         forecastWeather: forecastWeather,
         spaceWeather: spaceWeather,
         rows:rows
-        // popWeather: popWeather
     }
     return weatherData;
 }
+
 
 async function handleWeather() {
     let weatherData = await getWeather();
@@ -212,8 +197,6 @@ async function handleWeather() {
     console.log("최저 끝")
 
     //강수 확률
-    //무슨 값을 가져올지 고민..!
-
     let percent=0;
     console.log("rows:",weatherData.rows);
     for (let j = 0; (j < 175) && (j<weatherData.rows); j++) {
@@ -224,8 +207,6 @@ async function handleWeather() {
 
 
     const probability = isRaining ? undefined : `오늘 강수확률 : ${percent}%`;
-
-    console.log("high", high);
 
     let message=undefined;
 
@@ -247,6 +228,7 @@ async function handleWeather() {
     return weather;
 }
 
+
 async function Weather() {
 
     let result = await handleWeather();
@@ -254,5 +236,6 @@ async function Weather() {
 
     return result;
 };
+
 
 export default Weather;
