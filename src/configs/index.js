@@ -15,6 +15,6 @@ export default {
   },
   URL: {
     LIBRARY: 'https://lib.hanyang.ac.kr/smufu-api/pc/1/rooms-at-seat',
-    DIET: 'http://app.ucan.or.kr/api/diet/hanyang/20191122/'
+    DIET: 'http://app.ucan.or.kr/api/diet/hanyang/'
   }
 };
