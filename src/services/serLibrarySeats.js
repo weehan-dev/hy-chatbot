@@ -17,11 +17,6 @@ function seatTextBuilder(libseat){
             }
  
         }
-    
-
-    }else{
-
-    }
 
     return text;
 }
