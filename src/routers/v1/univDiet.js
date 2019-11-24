@@ -1,7 +1,8 @@
 import express from 'express';
-import serUnivDiets from '../../services/serUnivDiets'
-const router = express.Router();
 
+import serUnivDiets from '../../services/serUnivDiets';
+
+const router = express.Router();
 
 router.post('', async (req, res) => {
 	try {
@@ -17,6 +18,7 @@ router.post('', async (req, res) => {
 		res.status(200).send('error');
 
 	}
+
 });
 
 export default router;
