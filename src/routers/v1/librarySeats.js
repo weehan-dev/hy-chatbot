@@ -1,16 +1,16 @@
 import express from 'express';
-import {fetchSeatData, seatTextBuilder, seatDataBuilder} from '../../services/serLibrarySeats';
+import serLibrarySeats from '../../services/serLibrarySeats';
 
 const router = express.Router();
 
 
 router.get('', async (req, res) => {
 	try {
-		const result = await fetchSeatData();
+		const result = await serLibrarySeats.fetchSeatData();
 
-		const text = seatTextBuilder(result)
+		const text = serLibrarySeats.seatTextBuilder(result)
 		
-		const ret = seatDataBuilder(text, req.query.version);
+		const ret = serLibrarySeats.seatDataBuilder(text, req.query.version);
 		
 		res.json(ret);
 	} catch (e) {

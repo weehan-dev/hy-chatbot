@@ -1,7 +1,5 @@
 import axios from 'axios';
 import configs from '../configs/index'
-import { PassThrough } from 'stream';
-import { text } from 'body-parser';
 const fetchSeatData = async () => {
   
   const libSeat = await axios.get(configs.URL.LIBRARY);
@@ -32,7 +30,7 @@ function seatTextBuilder(libseat){
 function seatDataBuilder(text, version) {
     // name location diet.name diet.price
     let res = {
-        "version": version,
+        version,
         "template": {
             "outputs": [
                 {
@@ -48,4 +46,4 @@ function seatDataBuilder(text, version) {
     return res
 }
 
-export {fetchSeatData, seatTextBuilder, seatDataBuilder};
+export default {fetchSeatData, seatTextBuilder, seatDataBuilder};

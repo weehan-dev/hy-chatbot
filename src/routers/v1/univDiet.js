@@ -1,15 +1,15 @@
 import express from 'express';
-import {fetchDietData, dietTextBuilder, dietDataBuilder} from '../../services/serUnivDiets'
+import serUnivDiets from '../../services/serUnivDiets'
 const router = express.Router();
 
 
 router.get('', async (req, res) => {
 	try {
-		const result = await fetchDietData(req.query.time );
+		const result = await serUnivDiets.fetchDietData(req.query.time );
 		
-		const text = dietTextBuilder(result)
+		const text = serUnivDiets.dietTextBuilder(result)
 		
-		const ret = dietDataBuilder(text, req.query.version);
+		const ret = serUnivDiets.dietDataBuilder(text, req.query.version);
  
 		res.json(ret);
 	} catch (e) {

@@ -1,7 +1,5 @@
 import axios from 'axios';
 import configs from "../configs/index";
-import { PassThrough } from 'stream';
-import { text } from 'body-parser';
 
 const fetchDietData = async (time) => {
     let diet = {};
@@ -18,15 +16,27 @@ const fetchDietData = async (time) => {
 
 function dietTextBuilder(data){
 
-    let text = data;
+    let text = '';
     
+    Object.keys(data).forEach(function(key){
+        let item = data[key];
+        text += `${item.name} \n`
+        text += `위치: ${item.location} \n`
+        let count = 0
+        text += '식단:\n'
+        Object.keys(item.diet).forEach(function(diet_key){
+            text += `\n ${item.diet[count].name + item.diet[count].price} \n`;
+            count += 1;
+        })
+        text += '\n\n'
 
+    })
     return text
 }
 
 function dietDataBuilder(text ,version) {
     let res = {
-        "version": version,
+        version,
         "template": {
             "outputs": [
                 {
@@ -44,4 +54,4 @@ function dietDataBuilder(text ,version) {
     return res
 }
 
-export {fetchDietData, dietTextBuilder, dietDataBuilder};
+export default {fetchDietData, dietTextBuilder, dietDataBuilder};
