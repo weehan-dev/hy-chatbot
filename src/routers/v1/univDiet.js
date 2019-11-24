@@ -5,20 +5,17 @@ import serUnivDiets from '../../services/serUnivDiets';
 const router = express.Router();
 
 router.post('', async (req, res) => {
-	try {
-		const result = await serUnivDiets.fetchDietData(req.query.time );
-		
-		const text = serUnivDiets.dietTextBuilder(result);
-		
-		const ret = serUnivDiets.dietDataBuilder(text, req.query.version);
-		
-		res.status(200).send(ret);
+  try {
+    const result = await serUnivDiets.fetchDietData(req.query.time);
 
-	} catch (e) {
-		res.status(200).send('error');
+    const text = serUnivDiets.dietTextBuilder(result);
 
-	}
+    const ret = serUnivDiets.dietDataBuilder(text, req.query.version);
 
+    res.status(200).send(ret);
+  } catch (e) {
+    res.status(200).send('error');
+  }
 });
 
 export default router;

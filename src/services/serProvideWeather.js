@@ -30,16 +30,16 @@ async function handleWeather() {
     case 0:
       break;
     case 1:
-      sky = '비';
+      sky = '비 🌧';
       break;
     case 2:
-      sky = '진눈개비';
+      sky = '진눈개비 🌨';
       break;
     case 3:
-      sky = '눈';
+      sky = '눈 ❄️';
       break;
     case 4:
-      sky = '소나기';
+      sky = '소나기 🌦';
       break;
     default:
       break;
@@ -57,13 +57,13 @@ async function handleWeather() {
 
   switch (sky) {
     case 1:
-      sky = '맑음';
+      sky = '맑음 ☀️';
       break;
     case 3:
-      sky = '구름 많음';
+      sky = '구름 많음 🌥';
       break;
     case 4:
-      sky = '흐림';
+      sky = '흐림 ☁️';
       break;
     default:
       break;
@@ -101,7 +101,7 @@ async function handleWeather() {
   let message;
 
   if (percent > 50) {
-    message = '오늘 비 올 확률이 높아요! 우산 잊지 마세요!';
+    message = '오늘 비 올 확률이 높아요!\n우산 잊지 마세요! ☂️';
   }
 
 
