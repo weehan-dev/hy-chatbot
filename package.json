@@ -2,9 +2,8 @@
   "name": "kakao-chatbot",
   "version": "1.0.0",
   "author": "changhoi",
-  "license": "GPL",
   "scripts": {
-    "dev": "NODE_ENV=DEV nodemon --exec ts-node ./src/app.js",
+    "dev": "nodemon --exec ts-node ./src/app.js",
     "prebuild": "rimraf dist",
     "predeploy": "yarn build",
     "deploy": "eb deploy --profile weehan",
@@ -13,14 +12,12 @@
     "start": "./node_modules/pm2/bin/pm2-runtime ./dist/app.js",
     "poststart": "node ./node_modules/pm2/bin/pm2 logs",
     "start:local": "node ./dist/app",
-    "test": "NODE_ENV=DEV mocha -r ts-node/register/transpile-only ./tests/*"
+    "test": "mocha -r ts-node/register/transpile-only ./tests/*"
   },
   "devDependencies": {
     "@types/chai": "^4.2.4",
-    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.1",
     "@types/mocha": "^5.2.7",
-    "@types/sequelize": "^4.28.6",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
     "chai": "^4.2.0",
@@ -39,11 +36,10 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
-    "morgan": "^1.9.1",
-    "pg": "^7.12.1",
-    "sequelize": "^5.21.2"
+    "morgan": "^1.9.1"
   }
 }

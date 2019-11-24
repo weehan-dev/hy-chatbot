@@ -15,5 +15,6 @@ router.get('/health', (req, res) => {
 });
 
 
-router.use('/api', api);
+router.use('', api);
+
 export default router;
