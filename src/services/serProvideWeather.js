@@ -1,6 +1,6 @@
 // 챗봇-'오늘의 왕십리 날씨'를 담당하는 부분
 // 사용자가 날씨를 요구하면 기상청 api -> 데이터 가공 -> 라우터로 json 전달
-import getWeather from './utils/weather/getWeather';
+import getWeather from '../utils/weather/getWeather';
 
 
 async function handleWeather() {
