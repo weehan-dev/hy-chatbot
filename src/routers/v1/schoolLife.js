@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.post('/weather', async (req, res) => {
-    res.json(await handleWeather());
-  });
+  res.json(await handleWeather());
+});
 
 export default router;
