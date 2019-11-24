@@ -1,11 +1,10 @@
 // 챗봇-'오늘의 왕십리 날씨'를 담당하는 부분
 // 사용자가 날씨를 요구하면 기상청 api -> 데이터 가공 -> 라우터로 json 전달
-import getWeather from './utils/weather_getWeather';
+import getWeather from './utils/weather/getWeather';
 
 
 async function handleWeather() {
   const weatherData = await getWeather();
-  console.log('데이터 로딩 끝');
 
   // 현재 기온
   let temperature;
@@ -49,7 +48,6 @@ async function handleWeather() {
   // 비가 안 올 때
   let i = 0;
   while (!isRaining) {
-    console.log(i);
     if (weatherData.forecastWeather[i].category === 'SKY') {
       sky = weatherData.forecastWeather[i].fcstValue;
       break;
@@ -71,8 +69,6 @@ async function handleWeather() {
       break;
   }
 
-  console.log('하늘 끝');
-
   // 최고 기온
   let high;
   for (let j = 0; j < 150; j += 1) {
@@ -82,7 +78,6 @@ async function handleWeather() {
     }
   }
 
-  console.log('최고 끝');
   // 최저 기온
   let low;
   for (let j = 0; j < 150; j += 1) {
@@ -92,11 +87,8 @@ async function handleWeather() {
     }
   }
 
-  console.log('최저 끝');
-
   // 강수 확률
   let percent = 0;
-  console.log('rows:', weatherData.rows);
   for (let j = 0; (j < 175) && (j < weatherData.rows); j += 1) {
     if (weatherData.spaceWeather[j].category === 'POP' && (weatherData.spaceWeather[j].fcstValue > percent)) {
       percent = weatherData.spaceWeather[j].fcstValue;
@@ -122,8 +114,6 @@ async function handleWeather() {
     probability, // 비가 오고 있을 때는 항목 삭제
     message
   };
-
-  console.log('result');
 
   return weather;
 }

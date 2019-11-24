@@ -12,7 +12,6 @@ function spaceDate() {
   const day = (`0${today.getDate()}`).slice(-2);
 
   const date = `${year}${month}${day}`;
-  console.log(date);
 
   return date;
 }
