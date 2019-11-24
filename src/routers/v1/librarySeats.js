@@ -4,7 +4,7 @@ import serLibrarySeats from '../../services/serLibrarySeats';
 const router = express.Router();
 
 
-router.get('', async (req, res) => {
+router.post('', async (req, res) => {
 	try {
 		const result = await serLibrarySeats.fetchSeatData();
 
@@ -15,8 +15,7 @@ router.get('', async (req, res) => {
 		res.status(200).send(ret)
 
 	} catch (e) {
-
-		res.send(e)
+		res.status(200).send('error');
 
 	}
 });
