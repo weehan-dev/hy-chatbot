@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "author": "changhoi",
   "scripts": {
-    "dev": "NODE_ENV=DEV nodemon --exec ts-node ./src/app.js",
-    "docker:image": "docker image build -t weehan/hy-chatbot:latest .",
-    "docker:dev": "docker container run -it -v ${PWD}:/app -p 4000:4000 --rm weehan/hy-chatbot:latest",
+    "dev": "nodemon --exec ts-node ./src/app.js",
     "prebuild": "rimraf dist",
     "predeploy": "yarn build",
     "deploy": "eb deploy --profile weehan",
@@ -14,7 +12,7 @@
     "start": "./node_modules/pm2/bin/pm2-runtime ./dist/app.js",
     "poststart": "node ./node_modules/pm2/bin/pm2 logs",
     "start:local": "node ./dist/app",
-    "test": "NODE_ENV=DEV mocha -r ts-node/register/transpile-only ./tests/*"
+    "test": "mocha -r ts-node/register/transpile-only ./tests/*"
   },
   "devDependencies": {
     "@types/chai": "^4.2.4",
@@ -38,6 +36,7 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
