@@ -11,7 +11,8 @@ router.get('', async (req, res) => {
 		
 		const ret = serUnivDiets.dietDataBuilder(text, req.query.version);
  
-		res.json(ret);
+		res.status(200).send(ret)
+		
 	} catch (e) {
 		res.send(e)
 	}

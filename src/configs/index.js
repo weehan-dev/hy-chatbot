@@ -14,7 +14,7 @@ export default {
     USERNAME: process.env.DB_USERNAME
   },
   URL: {
-    LIBRARY: 'https://lib.hanyang.ac.kr/smufu-api/pc/1/rooms-at-seat',
+    LIBRARY: 'https://lib.hanyang.ac.kr/smufu-api/pc/1/rooms-at-seat/',
     DIET: 'http://app.ucan.or.kr/api/diet/hanyang/'
   }
 };

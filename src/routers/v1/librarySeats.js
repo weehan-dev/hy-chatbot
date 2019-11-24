@@ -12,9 +12,12 @@ router.get('', async (req, res) => {
 		
 		const ret = serLibrarySeats.seatDataBuilder(text, req.query.version);
 		
-		res.json(ret);
+		res.status(200).send(ret)
+
 	} catch (e) {
+
 		res.send(e)
+
 	}
 });
 

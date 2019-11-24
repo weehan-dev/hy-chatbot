@@ -9,7 +9,7 @@ const fetchSeatData = async () => {
 
 function seatTextBuilder(libseat){
     let text = "";
-
+    console.log(libseat);
     if (libseat.success === true) {
         for (var i = 0, item; item = libseat.data.list[i]; i++) {
             if (item.isActive === true) {
