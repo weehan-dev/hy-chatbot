@@ -225,17 +225,11 @@ async function handleWeather() {
         message: message
     }
 
+    console.log("result");
+
     return weather;
 }
 
 
-async function Weather() {
 
-    let result = await handleWeather();
-    console.log("result");
-
-    return result;
-};
-
-
-export default Weather;
+export default handleWeather;
