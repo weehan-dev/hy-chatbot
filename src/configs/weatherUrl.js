@@ -8,6 +8,7 @@ function seoulTime() {
   return date;
 }
 
+// 동네예보 basedate설정
 function spaceDate() {
   let today = seoulTime();
 
@@ -24,8 +25,10 @@ function spaceDate() {
   return date;
 }
 
+// 동네예보 basetime설정
 function spaceTime() {
   const today = seoulTime();
+
   let hours = '0200';
 
   if (today.format('HH') < 3) {
@@ -35,22 +38,10 @@ function spaceTime() {
   return hours;
 }
 
-// 기상청 api에 넣을 시간 파라미터 반환 함수
-function handleTime() {
-  let today = seoulTime();
-  const minutes = today.format('mm');
-  if (minutes < 45) {
-    today = today.add('-1', 'h');
-  }
-
-  const hours = today.format('HH00');
-
-  return hours;
-}
-
-// 기상청 api에 넣을 날짜 파라미터 반환 함수
+// 초단기실황, 초단기예보 basedate설정
 function handleDate() {
   let today = seoulTime();
+
   const minutes = today.format('mm');
 
   if (minutes < 45) {
@@ -64,6 +55,21 @@ function handleDate() {
   const date = `${year}${month}${day}`;
 
   return date;
+}
+
+// 초단기실황, 초단기예보 basetime설정
+function handleTime() {
+  let today = seoulTime();
+
+  const minutes = today.format('mm');
+
+  if (minutes < 45) {
+    today = today.add('-1', 'h');
+  }
+
+  const hours = today.format('HH00');
+
+  return hours;
 }
 
 
