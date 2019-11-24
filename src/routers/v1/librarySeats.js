@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.post('', async (req, res) => {
 	try {
-		const result = await serLibrarySeats.fetchSeatData();
 
+		const result = await serLibrarySeats.fetchSeatData();
 
 		const text = serLibrarySeats.seatTextBuilder(result)
 		
@@ -15,6 +15,7 @@ router.post('', async (req, res) => {
 		res.status(200).send(ret)
 
 	} catch (e) {
+
 		res.status(200).send('error');
 
 	}
