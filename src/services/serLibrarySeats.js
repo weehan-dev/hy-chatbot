@@ -7,6 +7,7 @@ const fetchSeatData = async () => {
   return libSeat.data;
 };
 
+
 function seatTextBuilder(libseat) {
   let text = '';
   if (!libseat.success && !libseat.data && !libseat.data.list) return text;

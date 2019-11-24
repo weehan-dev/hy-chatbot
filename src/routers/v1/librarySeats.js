@@ -7,14 +7,18 @@ router.get('', async (req, res) => {
   try {
     const result = await serLibrarySeats.fetchSeatData();
 
-    const text = serLibrarySeats.seatTextBuilder(result);
 
-    const ret = serLibrarySeats.seatDataBuilder(text, req.query.version);
+		const text = serLibrarySeats.seatTextBuilder(result)
+		
+		const ret = serLibrarySeats.seatDataBuilder(text, req.query.version);
+		
+		res.status(200).send(ret)
 
-    res.json(ret);
-  } catch (e) {
-    res.send(e);
-  }
+	} catch (e) {
+
+		res.send(e)
+
+	}
 });
 
 export default router;
