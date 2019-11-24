@@ -12,5 +12,9 @@ export default {
     TYPE: process.env.DB_TYPE,
     PASSWORD: process.env.DB_PASSWORD,
     USERNAME: process.env.DB_USERNAME
+  },
+  URL: {
+    LIBRARY: 'https://lib.hanyang.ac.kr/smufu-api/pc/1/rooms-at-seat',
+    DIET: 'http://app.ucan.or.kr/api/diet/hanyang/'
   }
 };
