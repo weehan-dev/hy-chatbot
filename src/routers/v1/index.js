@@ -1,6 +1,6 @@
 import express from 'express';
 import facility from './facility';
-import school from './school';
+import school from './schoolLife';
 
 const router = express.Router();
 
