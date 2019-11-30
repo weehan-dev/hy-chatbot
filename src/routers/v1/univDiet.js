@@ -5,10 +5,10 @@ import serUnivDiets from '../../services/serUnivDiets';
 const router = express.Router();
 
 router.post('', async (req, res) => {
-  try {
-    const result = await serUnivDiets.fetchDietData(req.query.time);
-
-    const text = serUnivDiets.dietTextBuilder(result);
+	try {
+		const result = await serUnivDiets.fetchDietData(req.query.time );
+		
+		const text = serUnivDiets.dietTextBuilder(result, req.query.time);
 
     const ret = serUnivDiets.dietDataBuilder(text, req.query.version);
 

@@ -4,9 +4,9 @@ import serLibrarySeats from '../../services/serLibrarySeats';
 const router = express.Router();
 
 router.post('', async (req, res) => {
+
   try {
     const result = await serLibrarySeats.fetchSeatData();
-
 
     const text = serLibrarySeats.seatTextBuilder(result);
 
