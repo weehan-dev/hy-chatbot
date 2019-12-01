@@ -112,7 +112,8 @@ async function handleWeather() {
     temperature,
     sky,
     probability, // 비가 오고 있을 때는 항목 삭제
-    message
+    message,
+    imgUrl: 'https://cdn.cnn.com/cnnnext/dam/assets/190821152345-cat-lady-stock-exlarge-169.jpg'
   };
 
   return weather;

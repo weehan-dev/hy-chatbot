@@ -1,7 +1,5 @@
 import dotenv from 'dotenv';
 
-import * as weatherUrl from './weatherUrl';
-
 dotenv.config();
 
 export default {
@@ -18,8 +16,8 @@ export default {
   URL: {
     LIBRARY: 'https://lib.hanyang.ac.kr/smufu-api/pc/1/rooms-at-seat',
     DIET: 'http://app.ucan.or.kr/api/diet/hanyang/',
-    SHORTTERM_STATUS: weatherUrl.getShortTermStatus(process.env.WEATHER_SERVICE_KEY),
-    SHORTTERM_FORECAST: weatherUrl.getShortTermForecast(process.env.WEATHER_SERVICE_KEY),
-    REGION_FORECAST: weatherUrl.getRegionForecast(process.env.WEATHER_SERVICE_KEY)
+    SHORTTERM_STATUS: `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastGrib?ServiceKey=${process.env.WEATHER_SERVICE_KEY}&nx=61&ny=127&pageNo=1&numOfRows=10&_type=json`,
+    SHORTTERM_FORECAST: `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastTimeData?ServiceKey=${process.env.WEATHER_SERVICE_KEY}&nx=61&ny=127&pageNo=1&numOfRows=25&_type=json`,
+    SPACE_FORECAST: `http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?ServiceKey=${process.env.WEATHER_SERVICE_KEY}&nx=61&ny=127&pageNo=1&numOfRows=175&_type=json`
   }
 };
