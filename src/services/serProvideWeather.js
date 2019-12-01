@@ -95,8 +95,7 @@ async function handleWeather() {
     }
   }
 
-
-  const probability = isRaining ? undefined : `오늘 강수확률 : ${percent}%`;
+  const probability = isRaining ? undefined : `\n오늘 강수확률 : ${percent}%`;
 
   let message;
 
@@ -116,7 +115,40 @@ async function handleWeather() {
     imgUrl: 'https://cdn.cnn.com/cnnnext/dam/assets/190821152345-cat-lady-stock-exlarge-169.jpg'
   };
 
-  return weather;
+  const data = {
+    version: '2.0',
+    template: {
+      outputs: [
+        {
+          basicCard: {
+            title: '지금 우리학교 날씨는',
+            description: `현재 기온 ${weather.temperature} °c, 하늘 ${weather.sky}!
+
+            =======================
+            
+            오늘 최고 기온 : ${weather.high} °c
+            오늘 최저 기온 : ${weather.low} °c${weather.probability}
+            
+            =======================
+            
+            ${weather.message}`,
+            thumbnail: {
+              imageUrl: weather.imgUrl
+            },
+            buttons: [
+              {
+                action: 'webLink',
+                label: '날씨 자세히 알아보기',
+                webLinkUrl: 'https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=%EC%82%AC%EA%B7%BC%EB%8F%99+%EB%82%A0%EC%94%A8'
+              }
+            ]
+          }
+        }
+      ]
+    }
+  };
+
+  return data;
 }
 
 
