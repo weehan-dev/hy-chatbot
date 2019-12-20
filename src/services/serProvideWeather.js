@@ -1,6 +1,7 @@
 // 챗봇-'오늘의 왕십리 날씨'를 담당하는 부분
 // 사용자가 날씨를 요구하면 기상청 api -> 데이터 가공 -> 라우터로 json 전달
 import getWeather from '../utils/weather/getWeather';
+import configs from '../configs/index';
 
 
 async function handleWeather() {
@@ -24,6 +25,8 @@ async function handleWeather() {
     }
   }
 
+  let imgUrl = 'https://cdn.cnn.com/cnnnext/dam/assets/190821152345-cat-lady-stock-exlarge-169.jpg';
+
   // 하늘 상태
   let sky;
   switch (isRaining) {
@@ -31,15 +34,19 @@ async function handleWeather() {
       break;
     case 1:
       sky = '비 🌧';
+      imgUrl = configs.URL.RAINY_IMAGE;
       break;
     case 2:
       sky = '진눈개비 🌨';
+      imgUrl = configs.URL.SNOWY_IMAGE;
       break;
     case 3:
       sky = '눈 ❄️';
+      imgUrl = configs.URL.SNOWY_IMAGE;
       break;
     case 4:
       sky = '소나기 🌦';
+      imgUrl = configs.URL.RAINY_IMAGE;
       break;
     default:
       break;
@@ -58,12 +65,15 @@ async function handleWeather() {
   switch (sky) {
     case 1:
       sky = '맑음 ☀️';
+      imgUrl = configs.URL.SUNNY_IMAGE;
       break;
     case 3:
       sky = '구름 많음 🌥';
+      imgUrl = configs.URL.CLOUDY_IMAGE;
       break;
     case 4:
       sky = '흐림 ☁️';
+      imgUrl = configs.URL.CLOUDY_IMAGE;
       break;
     default:
       break;
@@ -103,7 +113,6 @@ async function handleWeather() {
     message = '오늘 비 올 확률이 높아요!\n우산 잊지 마세요! ☂️';
   }
 
-
   // 최종 전송 데이터
   const weather = {
     high,
@@ -112,7 +121,7 @@ async function handleWeather() {
     sky,
     probability, // 비가 오고 있을 때는 항목 삭제
     message,
-    imgUrl: 'https://cdn.cnn.com/cnnnext/dam/assets/190821152345-cat-lady-stock-exlarge-169.jpg'
+    imgUrl
   };
 
   const data = {
@@ -123,7 +132,7 @@ async function handleWeather() {
           basicCard: {
             title: '지금 우리학교 날씨는',
             description: `현재 기온 ${weather.temperature} °c, 하늘 ${weather.sky}!
-
+            
             =======================
             
             오늘 최고 기온 : ${weather.high} °c
