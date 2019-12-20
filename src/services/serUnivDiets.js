@@ -16,7 +16,7 @@ const fetchDietData = async (time) => {
 function dietTextBuilder(data, time) {
   let text = '';
   if (time==="lunch")
-    text += '🍝오늘의 점심\n점심으로 에너지 충전!';
+    text += '🍱오늘의 점심\n점심으로 에너지 충전!';
   else if(time ==='dinner')
     text += '🍲오늘의 저녁\n저녁저녁 ';
   else if (time==='breakfast')
@@ -29,13 +29,12 @@ function dietTextBuilder(data, time) {
     }
   }
   array_out.push(card);
-  console.log(text);
   text = '';
 
   Object.keys(data).forEach((key) => {
     const item = data[key];
 
-    text += `◼x${item.name} \n`;
+    text += `◼${item.name} \n`;
     text += `위치: ${item.location} \n`;
     let count = 0;
     text += '식단:\n';
@@ -46,7 +45,6 @@ function dietTextBuilder(data, time) {
       count += 1;
     });
     text += '\n\n';
-    console.log(text);
     card = {
         simpleText: {
           text
@@ -56,21 +54,41 @@ function dietTextBuilder(data, time) {
     text = '';
   });
   const percentage = Math.random()
-  if (percentage > 0.01){
+  console.log(percentage);
+  if (percentage < 0.01){
     text = '오늘의 메뉴 추천은 든든-하고 뜨끈-한 국밥입니다.'
+    card = {
+      simpleText: {
+        text
+      }
+    }
+    array_out.push(card);
   }else if (percentage > 0.99){
     text = '오늘 밤은 치킨이닭!'
+    card = {
+      simpleText: {
+        text
+      }
+    }
+    array_out.push(card);
   }else if (percentage > 0.98){
     text = 'WINNER WINNER CHICKEN DINNER!';
+    card = {
+      simpleText: {
+        text
+      }
+    }
+    array_out.push(card);
   }else if (percentage > 0.977){
     text = '엽기 떡볶이 먹고 싶다'
-  }
-  card = {
-    simpleText: {
-      text
+    card = {
+      simpleText: {
+        text
+      }
     }
+    array_out.push(card);
   }
-  array_out.push(card);
+  
   return array_out;
 }
 
