@@ -133,14 +133,14 @@ async function handleWeather() {
             title: '지금 우리학교 날씨는',
             description: `현재 기온 ${weather.temperature} °c, 하늘 ${weather.sky}!
             
-            =======================
+=======================
             
-            오늘 최고 기온 : ${weather.high} °c
-            오늘 최저 기온 : ${weather.low} °c${weather.probability}
+오늘 최고 기온 : ${weather.high} °c
+오늘 최저 기온 : ${weather.low} °c${weather.probability}
             
-            =======================
+=======================
             
-            ${weather.message}`,
+${weather.message}`,
             thumbnail: {
               imageUrl: weather.imgUrl
             },
