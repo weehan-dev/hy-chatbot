@@ -107,10 +107,10 @@ async function handleWeather() {
 
   const probability = isRaining ? undefined : `\n오늘 강수확률 : ${percent}%`;
 
-  let message;
+  let message = '"오늘도 좋은 하루 되세요 ☘"';
 
   if (percent > 50) {
-    message = '오늘 비 올 확률이 높아요!\n우산 잊지 마세요! ☂️';
+    message = '"오늘 비 올 확률이 높아요!\n우산 잊지 마세요! ☂️"';
   }
 
   // 최종 전송 데이터
