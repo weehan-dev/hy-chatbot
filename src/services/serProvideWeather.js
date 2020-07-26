@@ -3,7 +3,6 @@
 import getWeather from '../utils/weather/getWeather';
 import configs from '../configs/index';
 
-
 async function handleWeather() {
   const weatherData = await getWeather();
 
@@ -20,7 +19,7 @@ async function handleWeather() {
   let isRaining;
   for (let i = 0; i < 8; i += 1) {
     if (weatherData.liveWeather[i].category === 'PTY') {
-      isRaining = weatherData.liveWeather[i].obsrValue;
+      isRaining = parseInt(weatherData.liveWeather[i].obsrValue, 10);
       break;
     }
   }
@@ -48,6 +47,18 @@ async function handleWeather() {
       sky = '소나기 🌦';
       imgUrl = configs.URL.RAINY_IMAGE;
       break;
+    case 5:
+      sky = '빗방울 💧';
+      imgUrl = configs.URL.RAINY_IMAGE;
+      break;
+    case 6:
+      sky = '빗방울/눈날림 💧/🌨';
+      imgUrl = configs.URL.RAINY_IMAGE;
+      break;
+    case 7:
+      sky = '눈날림 🌨';
+      imgUrl = configs.URL.SNOWY_IMAGE;
+      break;
     default:
       break;
   }
@@ -56,7 +67,7 @@ async function handleWeather() {
   let i = 0;
   while (!isRaining) {
     if (weatherData.forecastWeather[i].category === 'SKY') {
-      sky = weatherData.forecastWeather[i].fcstValue;
+      sky = parseInt(weatherData.forecastWeather[i].fcstValue, 10);
       break;
     }
     i += 1;
@@ -105,7 +116,7 @@ async function handleWeather() {
     }
   }
 
-  const probability = isRaining ? undefined : `\n오늘 강수확률 : ${percent}%`;
+  const probability = isRaining ? ' ' : `\n오늘 강수확률 : ${percent}%`;
 
   let message = '"오늘도 좋은 하루 되세요 ☘"';
 
@@ -159,6 +170,5 @@ ${weather.message}`,
 
   return data;
 }
-
 
 export default handleWeather;

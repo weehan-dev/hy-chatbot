@@ -1,6 +1,5 @@
 import moment from 'moment-timezone';
 
-
 // 요청받은 시각의 서울 시각
 function seoulTime() {
   const date = moment().tz('Asia/Seoul');
@@ -12,7 +11,7 @@ function seoulTime() {
 function spaceDate() {
   let today = seoulTime();
 
-  if (today.format('HH') < 3) {
+  if (parseInt(today.format('HH'), 10) < 3) {
     today = today.add('-1', 'd');
   }
 
@@ -31,12 +30,11 @@ function spaceTime() {
 
   let hours = '0200';
 
-  if (today.format('HH') < 3) {
+  if (parseInt(today.format('HH'), 10) < 3) {
     hours = '2300';
   }
 
   return hours;
 }
-
 
 export { spaceDate, spaceTime };
